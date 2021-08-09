@@ -2,6 +2,7 @@ const Tweet = require('../models/Tweet')
 
 class TweetController {
   static create(req, res, next) {
+    console.log(req.loggedInUser.id);
     const content = req.body.content
     Tweet.create({
       content,

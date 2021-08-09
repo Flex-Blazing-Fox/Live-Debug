@@ -4,11 +4,13 @@ const createError = require('http-errors')
 
 class Auth {
   
-  authentication(req, res, next) {
+  static authentication(req, res, next) {
     try {
       req.loggedInUser = jwt.verify(req.headers.access_token, process.env.JWT_SECRET)
-      User.findByPk({id: req.loggedInUser.id})
+      console.log(req.loggedInUser);
+      User.findByPk(req.loggedInUser.id)
         .then(result => {
+          // console.log();
           if (!result) { throw createError(404, "User not found!") }
           next()
         })
@@ -21,7 +23,7 @@ class Auth {
     }
   }
 
-  authorization(req, res, next) {
+  static authorization(req, res, next) {
     let tweetId = req.params.id
 
     Tweet.findByPk(tweetId)
