@@ -23,8 +23,10 @@ class UserController {
     User.findOne({email})
       .then((result) => {
         if (result && bcryptjs.compareSync(password, result.password)) {
-          const access_token = jwt.sign({ id: result.id }, process.env.JWT_SECRET) 
+          // const access_token = jwt.sign({ id: result.id }, process.env.JWT_SECRET)
+          const access_token = jwt.sign({ id: result.id }, "secret") 
           res.status(200).json({access_token})
+          console.log(access_token);
         } else {
           throw createError(400, "Invalid Email/Password")
         }
