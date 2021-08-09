@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import yugiohAPI from '../api/yugioh'
 import axios from 'axios'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 Vue.use(Vuex)
 
-export default Vuex.Store({
+export default new Vuex.Store({
   state: {
     cardList: [],
     cardDetail: null,
@@ -82,6 +83,7 @@ export default Vuex.Store({
         })
     },
     addComment (context, payload) {
+      console.log(payload)
       const { content, name, cardNumber } = payload
       axios.post('http://localhost:3000/comments', {
         content,

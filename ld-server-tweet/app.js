@@ -3,14 +3,14 @@ const express = require('express');
 
 const app = express();
 
-const routes = express.Router();
+const routes = require('./routes')
 const errorHandler = require('./middlewares/errorHandler');
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/', routes);
+app.use(routes);
 
 app.use(errorHandler);
 
-module.export = app;
+module.exports = app;

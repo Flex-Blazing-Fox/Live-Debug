@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     fetchDetail (cardNumber) {
-      this.$store.commit('fetchCardDetail', {
+      this.$store.dispatch('fetchCardDetail', {
         card_number: cardNumber
       })
     }

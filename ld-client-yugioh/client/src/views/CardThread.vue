@@ -25,7 +25,7 @@
       <div class="col-md-8">
 
         <!-- add new comment to card -->
-        <form class="mb-4" :submit.prevent="addComment">
+        <form class="mb-4" @submit.prevent="addComment">
           <div class="form-group">
             <input
               type="text"
@@ -88,6 +88,7 @@ export default {
       })
         .then(({ data }) => {
           this.$store.commit('ADD_CARD_COMMENTS', data)
+          this.$store.dispatch('fetchCardComments')
         })
         .catch(err => {
           this.$store.commit('SET_NOTIF', {
