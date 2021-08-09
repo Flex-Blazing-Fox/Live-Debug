@@ -7,11 +7,7 @@ class Auth {
   authentication(req, res, next) {
     try {
       req.loggedInUser = jwt.verify(req.headers.access_token, process.env.JWT_SECRET)
-      User.findByPk({
-        where: {
-          id: req.loggedInUser.id
-        }
-      })
+      User.findByPk({id: req.loggedInUser.id})
         .then(result => {
           if (!result) { throw createError(404, "User not found!") }
           next()

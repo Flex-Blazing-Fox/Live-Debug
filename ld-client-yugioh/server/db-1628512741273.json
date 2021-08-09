@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "card_number": "DR04-EN096",
+      "name": "Jaden Yuki",
+      "content": "This is a good card"
+    },
+    {
+      "id": 2,
+      "card_number": "DR04-EN096",
+      "name": "Seto Kaiba",
+      "content": "I have several copies of this worthless card"
+    },
+    {
+      "content": "test",
+      "name": "dhimas",
+      "id": 3
+    },
+    {
+      "content": "test2",
+      "name": "dhimas2",
+      "id": 4
+    },
+    {
+      "content": "bagus",
+      "name": "hey",
+      "card_number": "DR04-EN096",
+      "id": 5
+    },
+    {
+      "content": "ok",
+      "name": "pururung",
+      "card_number": "DR04-EN096",
+      "id": 6
+    },
+    {
+      "content": "a",
+      "name": "asd",
+      "card_number": "DR04-EN096",
+      "id": 7
+    },
+    {
+      "content": "a",
+      "name": "a",
+      "card_number": "DR04-EN096",
+      "id": 8
+    },
+    {
+      "content": "hard to use",
+      "name": "hardim",
+      "card_number": "DANE-EN051",
+      "id": 9
+    },
+    {
+      "content": "i have 6 of this copies",
+      "name": "kaiba",
+      "card_number": "DANE-EN051",
+      "id": 10
+    },
+    {
+      "content": "aa",
+      "name": "a",
+      "card_number": "DR04-EN096",
+      "id": 11
+    }
+  ]
+}

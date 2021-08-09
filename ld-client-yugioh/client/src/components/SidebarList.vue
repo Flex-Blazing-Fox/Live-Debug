@@ -3,7 +3,7 @@
     <div class="list-group" v-if="cardList.length">
       <SidebarListItem
         v-for="card in cardList"
-        @card="card"
+        :card="card"
         :key="card.card_number"
       />
     </div>
@@ -26,7 +26,7 @@ export default {
     Fragment
   },
   computed: {
-    cardList: {
+    cardList () {
       return this.$store.state.cardList
     }
   }

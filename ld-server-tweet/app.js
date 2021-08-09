@@ -13,4 +13,4 @@ app.use(routes);
 
 app.use(errorHandler);
 
-module.export = app;
+module.exports = app;
