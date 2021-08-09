@@ -5,7 +5,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-export default Vuex.Store({
+const store = new Vuex.Store({
   state: {
     cardList: [],
     cardDetail: null,
@@ -93,3 +93,5 @@ export default Vuex.Store({
   modules: {
   }
 })
+
+export default store

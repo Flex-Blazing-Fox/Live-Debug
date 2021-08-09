@@ -20,16 +20,32 @@
 export default {
   name: 'SidebarListItem',
   props: {
-    card: Object
+    card: Object,
+  },
+  data() {
+    return {
+      card: {
+        name: '',
+        card_number: '',
+        card_rarity: ''
+      }
+    }
   },
   methods: {
-    fetchDetail (cardNumber) {
-      this.$store.commit('fetchCardDetail', {
-        card_number: cardNumber
-      })
-    }
-  }
-}
+    fetchDetail(cardNumber) {
+      this.$store
+        .dispatch('fetchCardDetail', {
+          card_number: cardNumber,
+        })
+        .then(({ data }) => {
+          this.card.name = data.name,
+          this.card.card_number = data.card_number,
+          this.card_rarity = data.card_rarity
+        })
+        .catch();
+    },
+  },
+};
 </script>
 
 <style>
