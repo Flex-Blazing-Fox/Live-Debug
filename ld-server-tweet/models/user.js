@@ -1,11 +1,20 @@
 "use strict";
-
-const bcryptjs = require("bcryptjs");
-
+const { Model } = require("sequelize");
+const bcryptjs = require("bcryptjs")
 module.exports = (sequelize, DataTypes) => {
-  const { Model } = sequelize.Sequelize;
-  class User extends Model {}
-
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      User.hasMany(models.Tweet, {
+        foreignKey: "UserId"
+      })
+    }
+  }
   User.init(
     {
       email: {
@@ -46,9 +55,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
-
-  User.associate = function (models) {
-    // associations can be defined here
-  };
   return User;
 };
