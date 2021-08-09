@@ -4,10 +4,10 @@ const createError = require('http-errors')
 
 class Auth {
   
-  authentication(req, res, next) {
+  static authentication(req, res, next) {
     try {
       req.loggedInUser = jwt.verify(req.headers.access_token, process.env.JWT_SECRET)
-      User.findByPk({
+      User.findOne({
         where: {
           id: req.loggedInUser.id
         }
@@ -25,13 +25,13 @@ class Auth {
     }
   }
 
-  authorization(req, res, next) {
-    let tweetId = req.params.id
-
+  static authorization(req, res, next) {
+    const tweetId = req.params.id
     Tweet.findByPk(tweetId)
       .then(result => {
         if (!result) throw createError(404, "Tweet not found")
         if (result.UserId == req.loggedInUser.id) {
+          req.tweet = result
           next()
         }
         else {

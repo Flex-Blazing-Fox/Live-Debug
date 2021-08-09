@@ -1,8 +1,8 @@
-const Tweet = require('../models/Tweet')
+const {Tweet} = require('../models')
 
 class TweetController {
   static create(req, res, next) {
-    const content = req.body.content
+    const {content} = req.body
     Tweet.create({
       content,
       UserId: req.loggedInUser.id
@@ -18,7 +18,8 @@ class TweetController {
   }
 
   static delete(req, res, next) {
-    Tweet.destroy({
+    const tweet = req.tweet
+    tweet.destroy({
       id: req.params.id
     })
       .then(data => {
