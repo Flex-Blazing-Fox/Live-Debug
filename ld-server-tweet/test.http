@@ -19,11 +19,17 @@ Content-Type: application/json
 }
 
 ### Post Tweet
-POST {{host}}/login http/1.1
-Content-Type: application/json]
-access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjI4NTEzMzMzfQ.TM0MJYCOtCon8g2KFVaN4a9eunPAMFTeUtLcSvhQHVY
+POST {{host}}/tweets http/1.1
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI4NTE0NjQ4fQ.yWP_okqQTzw2CStJMAHufQ6bpqs2CD_PPiqXun4TCNA
 
 {
-    "content": "Test"
+    "content": "Testss"
 }
+
+### Delete Tweet
+DELETE {{host}}/tweets/4 http/1.1
+Content-Type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI4NTE0NjQ4fQ.yWP_okqQTzw2CStJMAHufQ6bpqs2CD_PPiqXun4TCNA
+
 

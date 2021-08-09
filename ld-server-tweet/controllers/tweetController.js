@@ -4,25 +4,27 @@ class TweetController {
   static create(req, res, next) {
     const content = req.body.content;
     Tweet.create({
-      content,
+      content: content,
       UserId: req.loggedInUser.id,
     })
-      // .then((tweet) => {
-      //   res.status(201).json({
-      //     id: tweet.id,
-      //     UserId: tweet.UserId,
-      //     content: tweet.content,
-      //   });
-      // })
-      // .catch(next);
+      .then((tweet) => {
+        res.status(201).json({
+          id: tweet.id,
+          UserId: tweet.UserId,
+          content: tweet.content,
+        });
+      })
+      .catch(next);
   }
 
   static delete(req, res, next) {
     Tweet.destroy({
-      id: req.params.id,
+      where: {
+        id: req.params.id,
+      },
     })
       .then((data) => {
-        if (data !== 1) {
+        if (data === 1) {
           res.status(200).json({
             message: "Success delete a tweet",
           });

@@ -25,7 +25,7 @@
       <div class="col-md-8">
 
         <!-- add new comment to card -->
-        <form class="mb-4" :submit.prevent="addComment">
+        <form class="mb-4" :submit="addComment">
           <div class="form-group">
             <input
               type="text"
