@@ -1,10 +1,8 @@
-const express = require('express')
-const router = express.Router()
+const routers = require("express").Router();
+const userRoutes = require("./user");
+const tweetRoutes = require("./tweet");
 
-const userRoutes = require('./user')
-const tweetRoutes = require('./tweet')
+routers.use("/", userRoutes);
+routers.use("/tweets", tweetRoutes);
 
-router.use('/', userRoutes)
-router.use('/tweets', tweetRoutes)
-
-module.exports = router
+module.exports = routers;
