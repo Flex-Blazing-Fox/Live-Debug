@@ -83,6 +83,7 @@ export default new Vuex.Store({
         })
     },
     addComment (context, payload) {
+      console.log(payload)
       const { content, name, cardNumber } = payload
       axios.post('http://localhost:3000/comments', {
         content,

@@ -1,8 +1,9 @@
-const Tweet = require('../models/Tweet')
+const { Tweet } = require('../models')
+const createError = require('http-errors')
 
 class TweetController {
   static create(req, res, next) {
-    console.log(req.loggedInUser.id);
+
     const content = req.body.content
     Tweet.create({
       content,
@@ -19,11 +20,12 @@ class TweetController {
   }
 
   static delete(req, res, next) {
-    Tweet.destroy({
+    Tweet.destroy({where: {
       id: req.params.id
+    }
     })
       .then(data => {
-        if(data !== 1) {
+        if(data === 1) {
           res.status(200).json({
             message: 'Success delete a tweet'
           })

@@ -7,7 +7,6 @@ class Auth {
   static authentication(req, res, next) {
     try {
       req.loggedInUser = jwt.verify(req.headers.access_token, process.env.JWT_SECRET)
-      console.log(req.loggedInUser);
       User.findByPk(req.loggedInUser.id)
         .then(result => {
           // console.log();

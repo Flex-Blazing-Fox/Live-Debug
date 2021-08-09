@@ -88,6 +88,7 @@ export default {
       })
         .then(({ data }) => {
           this.$store.commit('ADD_CARD_COMMENTS', data)
+          this.$store.dispatch('fetchCardComments')
         })
         .catch(err => {
           this.$store.commit('SET_NOTIF', {
