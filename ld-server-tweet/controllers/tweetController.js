@@ -1,13 +1,14 @@
-const Tweet = require('../models/Tweet')
+const {User,Tweet} = require('../models')
 
 class TweetController {
   static create(req, res, next) {
-    const content = req.body.content
+    const {content} = req.body
+
     Tweet.create({
       content,
       UserId: req.loggedInUser.id
     })
-      .then(tweet => {
+    .then(tweet => {
         res.status(201).json({
           id: tweet.id,
           UserId: tweet.UserId,
@@ -18,11 +19,10 @@ class TweetController {
   }
 
   static delete(req, res, next) {
-    Tweet.destroy({
-      id: req.params.id
-    })
+    
+    Tweet.destroy({where:{ id: req.params.id}})
       .then(data => {
-        if(data !== 1) {
+        if(data === 1) {
           res.status(200).json({
             message: 'Success delete a tweet'
           })
@@ -30,7 +30,9 @@ class TweetController {
           throw createError(500, "Internal server error")
         }
       })
-      .catch(next)
+      .catch((err) => {
+        next(err)
+      })
   }
 }
 

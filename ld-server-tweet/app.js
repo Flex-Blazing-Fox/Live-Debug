@@ -1,16 +1,23 @@
-require('dotenv').config()
+// require('dotenv').config()
+
 const express = require('express');
-
+const port = 3000;
+const cors = require('cors');
 const app = express();
+const routes = require('./routes')
+// const errorHandler = require('./middlewares/errorHandler');
 
-const routes = express.Router();
-const errorHandler = require('./middlewares/errorHandler');
-
-app.use(express.urlencoded({ extended: false }));
+app.use(cors())
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', routes);
+app.use(routes);
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
-module.export = app;
+
+app.listen(port, ()=>{
+    console.log(`app listen on port ${port}`);
+})
+
+module.exports = app;
