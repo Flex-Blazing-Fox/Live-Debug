@@ -1,46 +1,46 @@
-const User  = require('../models').User
-const jwt = require('jsonwebtoken')
-const bcryptjs = require('bcryptjs')
-const createError = require('http-errors')
+const { User } = require("../models")
+const jwt = require("jsonwebtoken");
+const bcryptjs = require("bcryptjs");
+const createError = require("http-errors");
 
 class UserController {
   static register(req, res, next) {
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
     User.create({
       email,
-      password
+      password,
     })
-      .then(user => {
+      .then((user) => {
         res.status(201).json({
           id: user.id,
-          email: user.email
-        })
+          email: user.email,
+        });
       })
-      .catch(next)
+      .catch(next);
   }
 
   static login(req, res, next) {
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
     User.findOne({
       where: {
-        email
-      }
+        email,
+      },
     })
-      .then(result => {
+      .then((result) => {
         if (result && bcryptjs.compareSync(password, result.password)) {
           res.status(200).json({
-            access_token: jwt.sign({ id: result.id }, process.env.JWT_SECRET)
-          })
+            access_token: jwt.sign({ id: result.id }, process.env.JWT_SECRET),
+          });
         } else {
-          throw createError(400, "Invalid Email/Password")
+          throw createError(400, "Invalid Email/Password");
         }
       })
-      .catch(err => {
-        next(err)
-      })
+      .catch((err) => {
+        next(err);
+      });
   }
 }
 
-module.exports = UserController
+module.exports = UserController;
