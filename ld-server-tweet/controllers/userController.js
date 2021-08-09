@@ -1,11 +1,10 @@
-const User  = require('../models')
+const {User}  = require('../models')
 const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
 const createError = require('http-errors')
 
 class UserController {
   static register(req, res, next) {
-    console.log('<<<<<<,');
     const { email, password } = req.body
 
     User.create({
